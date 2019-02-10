@@ -17,7 +17,7 @@
             <a-assets timeout="3000">
             <!--background taken from: https://thefulldomeblog.com/2013/06/22/stars-to-surround-the-scene/-->
                 <img crossorigin="anonymous" id="starBG" src="/assets/images/starwarsBG.jpg">    
-                <a-asset-item crossorigin="anonymous" id="MF-gltf" src="/assets/models/MillFalc.glb"></a-asset-item>
+                <a-asset-item crossorigin="anonymous" id="XW-gltf" src="/assets/models/out.glb"></a-asset-item>
             
                 <audio id="create-sound" crossorigin="anonymous" src="/assets/sound/Laser_Gun.mp3" ></audio> 
                 
@@ -30,11 +30,11 @@
                     <a-gltf-model   
                        
                         createcomponent
-                        src="#MF-gltf"
+                        src="#XW-gltf"
                         cursor="fuse:true; fuseTimeout:500;"
-                        position="0 -5 -10"
+                        position="0 -5 -8"
                         rotation="2 180 0" 
-                        scale="0.005 0.005 0.005" 
+                        scale="0.02 0.02 0.02" 
                         shadow="cast:true; receive:true;" 
                         spherical-env-map="src:#starBG;">
                                 
