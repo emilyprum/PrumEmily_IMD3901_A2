@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Create, Move and Delete</title>
+        <script src="/js/aframe.min.js"></script>
+        <script src="/js/spherical-env-map.js"></script>
+
+        <!--scripts to load, move and delete-->
+        <script src="/js/createcomponent.js"></script>
+        <script src="/js/deletecomponent.js"></script>
+        <script src="/js/movecomponent.js"></script>
+
+    </head>
+    <body>
+        <a-scene shadow="type:basic;">
+            <!--loading in assets-->
+            <a-assets timeout="3000">
+            <!--background taken from: https://thefulldomeblog.com/2013/06/22/stars-to-surround-the-scene/-->
+                <img crossorigin="anonymous" id="starBG" src="/assets/images/starwarsBG.jpg">    
+                <a-asset-item crossorigin="anonymous" id="MF-gltf" src="/assets/models/MillFalc.glb"></a-asset-item>
+            
+                <audio id="create-sound" crossorigin="anonymous" src="/assets/sound/Laser_Gun.mp3" ></audio> 
+                
+
+            </a-assets>
+            <!-- camera -->
+                <a-entity position="0 2 0 "  camera look-controls wasd-controls="acceleration: 400" >
+                    <!-- if you add rayOrigin:mouse to teh cursor properties selection happens where you click -->
+                    <!-- <a-entity   cursor="fuse:true; fuseTimeout:500; rayOrigin:mouse;" -->
+                    <a-gltf-model   
+                       
+                        createcomponent
+                        src="#MF-gltf"
+                        cursor="fuse:true; fuseTimeout:500;"
+                        position="0 -5 -10"
+                        rotation="2 180 0" 
+                        scale="0.005 0.005 0.005" 
+                        shadow="cast:true; receive:true;" 
+                        spherical-env-map="src:#starBG;">
+                                
+                    </a-gltf-model>
+
+                    <a-entity
+                        
+                        cursor="fuse:true; fuseTimeout:500;"
+                        position="0 0 -1"
+                        geometry="primitive:ring; radiusInner:0.02; radiusOuter:0.03;"
+                        material="shader:flat; color:black;" >
+                    </a-entity>
+                </a-entity>
+
+                <!-- sound entities we will query and play in components -->
+                <a-entity id="createSound" sound="src:#create-sound"></a-entity>
+                 
+
+                <!-- default lighting added in manually -->
+                <a-entity light="type:directional; castShadow:true; intensity:0.6; shadowBias:-0.000001; shadowMapWidth:1024; shadowMapHeight:1024;" position="-0.5 1 1"></a-entity>
+                <a-entity light="type: ambient; intensity: 1.0; color:#bbb;"></a-entity>
+            
+
+                <!-- background-->
+                <a-entity 
+                    
+                    id="BG"
+                    geometry="primitive:sphere; radius:1000;"
+                    material="shader:flat; src:#starBG; side:back; height:4096; width:4096">
+                </a-entity>
+
+
+        </a-scene>
+
+    </body>
+</html>
